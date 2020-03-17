@@ -381,32 +381,32 @@ var rellax = createCommonjsModule(function (module) {
     };
 
     // Remove event listeners and loop again
-    var deferredUpdate = function() {
-      window.removeEventListener('resize', deferredUpdate);
-      window.removeEventListener('orientationchange', deferredUpdate);
-      (self.options.wrapper ? self.options.wrapper : window).removeEventListener('scroll', deferredUpdate);
-      (self.options.wrapper ? self.options.wrapper : document).removeEventListener('touchmove', deferredUpdate);
+    // var deferredUpdate = function() {
+    //   window.removeEventListener('resize', deferredUpdate);
+    //   window.removeEventListener('orientationchange', deferredUpdate);
+    //   (self.options.wrapper ? self.options.wrapper : window).removeEventListener('scroll', deferredUpdate);
+    //   (self.options.wrapper ? self.options.wrapper : document).removeEventListener('touchmove', deferredUpdate);
 
-      // loop again
-      loopId = loop(update);
-    };
+    //   // loop again
+    //   loopId = loop(update);
+    // };
 
     // Loop
     var update = function() {
       if (setPosition() && pause === false) {
         animate();
-
-        // loop again
-        loopId = loop(update);
-      } else {
-        loopId = null;
-
-        // Don't animate until we get a position updating event
-        window.addEventListener('resize', deferredUpdate);
-        window.addEventListener('orientationchange', deferredUpdate);
-        (self.options.wrapper ? self.options.wrapper : window).addEventListener('scroll', deferredUpdate, supportsPassive ? { passive: true } : false);
-        (self.options.wrapper ? self.options.wrapper : document).addEventListener('touchmove', deferredUpdate, supportsPassive ? { passive: true } : false);
       }
+      // loop again
+      loopId = loop(update);
+      // } else {
+      //   loopId = null;
+
+      //   // Don't animate until we get a position updating event
+      //   window.addEventListener('resize', deferredUpdate);
+      //   window.addEventListener('orientationchange', deferredUpdate);
+      //   (self.options.wrapper ? self.options.wrapper : window).addEventListener('scroll', deferredUpdate, supportsPassive ? { passive: true } : false);
+      //   (self.options.wrapper ? self.options.wrapper : document).addEventListener('touchmove', deferredUpdate, supportsPassive ? { passive: true } : false);
+      // }
     };
 
     // Transform3d on parallax element
